@@ -1,144 +1,148 @@
-# Olist E-commerce Data Analysis
-**Python | MySQL | Power BI**
+# Olist E-commerce Analytics
 
-## Overview
-This project analyzes the Olist e-commerce dataset through an end-to-end data analytics workflow covering data preparation, SQL-based validation, business logic verification, and dashboard-ready reporting.
+**End-to-end Data Analyst portfolio project | Python • MySQL • Power BI**
 
-The objective is not only to clean and load the data, but also to validate whether the dataset is reliable enough for KPI reporting and business decision-making. The project follows a structured analyst approach: prepare the data, validate the logic, and then build reporting outputs with confidence.
+This project analyzes the Brazilian E-Commerce Public Dataset by Olist using a structured analyst workflow: **data preparation → relational modeling → SQL validation → business-rule checks → dashboard reporting**.
 
----
+The focus is not simply on producing charts. The project demonstrates how an analyst validates data quality and business logic before trusting KPIs and reporting results.
 
-## Business Objective
-The purpose of this project is to generate meaningful business insights related to:
+## Business Questions
 
-- sales performance
-- customer behavior
-- delivery efficiency
-- payment patterns
-- seller contribution
-- product category performance
-- customer reviews and feedback trends
+- How are orders and revenue trending over time?
+- Which product categories and sellers contribute most to sales?
+- How does delivery performance vary across orders?
+- Which payment methods and installment patterns are most common?
+- How do review scores relate to customer experience?
+- Are the underlying tables reliable enough for KPI reporting?
 
-The final output is intended to support business reporting through SQL analysis and Power BI dashboards.
+## Analytics Workflow
 
----
+1. **Data preparation — Python / Pandas**
+   - Standardize columns and data types
+   - Parse dates and numeric fields
+   - Preserve legitimate business nulls
+   - Remove exact duplicate rows where appropriate
+   - Prepare analysis-ready files
 
-## Tools and Technologies
-- **Python**: Pandas, NumPy, OS, MySQL Connector
-- **SQL**: MySQL
-- **Visualization**: Power BI
-- **Version Control**: Git and GitHub
+2. **Relational modeling — MySQL**
+   - Model the Olist tables using primary keys and composite keys
+   - Define table grain and relationships
+   - Prepare SQL loading scripts
 
----
+3. **Data quality & business validation — SQL**
+   - Row-count reconciliation
+   - Duplicate and null checks
+   - Date/timeline sanity checks
+   - Review-score validation
+   - Payment and price sanity checks
+   - Order-grain validation
+   - Delivery-delay logic
+   - Category translation coverage
+   - Monthly trend readiness
 
-## Project Structure
+4. **Business reporting — Power BI**
+   - KPI-driven reporting
+   - Sales and order trends
+   - Category and seller performance
+   - Delivery and customer-review analysis
+
+## Repository Structure
+
 ```text
-Olist_Project/
-│
-├── data/
-│   ├── raw/        # Original source datasets
-│   └── cleaned/    # Cleaned and SQL-safe datasets
-│
-├── notebooks/      # Python cleaning, preprocessing, and workflow documentation
-├── sql/            # Schema, load scripts, validation queries, and business SQL
+olist-data-analysis/
+├── dashboard/
+│   ├── olist_project.pbix
+│   └── README.md
+├── notebooks/
+│   └── Olist_Project_updated.ipynb
+├── sql/
+│   ├── schema.sql
+│   ├── data_loading.sql
+│   └── validation_queries.sql
+├── .gitignore
 └── README.md
 ```
----
 
-## 🚀 Project Progress
+### Why the datasets are not stored in this portfolio repository
 
-### 1. Project Setup and Data Understanding
-- organized the project into raw data, cleaned data, notebooks, and SQL layers
-- reviewed source datasets to understand structure, grain, and initial data quality
-- established the workflow for Python, SQL, and Power BI integration
+The original Olist dataset contains multiple large CSV files, including a geolocation table with more than one million rows. Keeping full raw and generated CSVs in a portfolio repository adds unnecessary repository weight and makes the project harder to clone and review. GitHub also recommends keeping repositories small and warns that large tracked files can affect repository performance. citeturn1search0turn1search1
 
-### 2. Data Cleaning and Preprocessing
-- standardized column names and formats
-- handled missing values using business-aware logic
-- removed duplicates where appropriate
-- converted date and numeric columns into analysis-ready format
-- prepared cleaned CSV files for MySQL loading
-- created SQL-safe files for tables requiring special handling during load
+The notebook is therefore designed to work from a local `data/raw/` folder. Download the public Olist dataset separately and place the CSV files there before running the notebook.
 
-### 3. Relational Modeling and Schema Design
-- identified the analytical role of each table
-- defined key fields and business grain across major datasets
-- generated SQL schema for MySQL table creation
-- aligned data types to support analysis and dashboarding
+## Getting Started
 
-### 4. SQL Loading and Technical Validation
-- Created SQL-safe cleaned files for database loading
-- Worked on `LOAD DATA INFILE` process for multiple tables
-- Resolved issues related to:
-  - duplicate records
-  - column length limits
-  - datatype mismatches
-  - geolocation load checks
-- Validated row counts between CSV files and SQL tables
-- checked duplicates, nulls, and structural consistency
+### 1. Download the Olist dataset
 
-### 5. Business Validation Before Dashboarding
-Before building the dashboard, the dataset is being validated from a business reporting perspective to ensure KPI calculations are trustworthy.
-This includes checks such as:
-- order grain validation
-- revenue sanity checks
-- orders without payment
-- orders without review
-- delivery timeline consistency
-- delayed order logic
-- category translation coverage
-- monthly order and revenue trend readiness
-This step helps ensure that reporting logic is based on reliable and interpretable data.
+Download the **Brazilian E-Commerce Public Dataset by Olist** and place the source CSV files under:
 
----
+```text
+data/raw/
+```
 
-## ✅ Validation Approach
-### Technical Validation
-Technical validation ensures that the data has been loaded and structured correctly.
-Examples:
-- row count comparison between CSV files and SQL tables
-- duplicate checks on key columns
-- null checks on important fields
-- datatype and loading issue resolution
+The notebook expects these files:
 
-### Business Validation
-Business validation ensures that the dataset is ready for KPI reporting and dashboard interpretation.
-Examples:
-- validating order grain before calculating total orders
-- checking payment coverage before reporting revenue
-- checking review coverage before analyzing customer feedback
-- validating delivery dates before calculating delivery KPIs
-- checking category translation completeness before category-level reporting
-- validating monthly trends before building time-based visuals
-  
----
+- `olist_orders_dataset.csv`
+- `olist_order_items_dataset.csv`
+- `olist_order_payments_dataset.csv`
+- `olist_order_reviews_dataset.csv`
+- `olist_customers_dataset.csv`
+- `olist_sellers_dataset.csv`
+- `olist_products_dataset.csv`
+- `olist_geolocation_dataset.csv`
+- `product_category_name_translation.csv`
 
-## 📈 Current Status
-- core datasets cleaned and prepared in Python
-- SQL schema generated and refined
-- major tables loaded into MySQL
-- technical validation completed for core tables
-- business validation in progress for dashboard readiness
-- project documentation and Git version control actively maintained
+### 2. Run the Python notebook
 
----
+Open:
 
-## 📊 Planned Dashboard Focus
-The Power BI dashboard will aim to answer questions such as:
-- How are orders and revenue trending over time?
-- Which product categories contribute most to sales?
-- What does delivery performance look like across orders?
-- Which payment methods are most commonly used?
-- How do review scores and written feedback behave?
-- Which sellers and customer regions contribute most to performance?
+`notebooks/Olist_Project_updated.ipynb`
 
----
+The notebook uses repository-relative paths, so it does not depend on a personal Windows/Desktop path.
 
-## 🎯 Expected Outcomes
-The final deliverable will be an end-to-end analytics project that demonstrates:
-- data cleaning and preparation in Python
-- SQL-based data loading and validation
-- business-focused data quality checks
-- KPI-driven dashboard development in Power BI
-- clear documentation and version-controlled project workflow
-- clear documentation and version-controlled project workflow
+### 3. Set up MySQL
+
+Create the database and tables using:
+
+`sql/schema.sql`
+
+Then adapt the local file-loading path in:
+
+`sql/data_loading.sql`
+
+**Important:** database credentials and machine-specific paths are intentionally not stored in the repository.
+
+### 4. Run validation
+
+Execute:
+
+`sql/validation_queries.sql`
+
+The validation layer should be completed before interpreting dashboard KPIs.
+
+### 5. Open the Power BI report
+
+The Power BI report is available at:
+
+`dashboard/olist_project.pbix`
+
+See `dashboard/README.md` for the dashboard handoff notes.
+
+## Key Analyst Skills Demonstrated
+
+**Python:** Pandas, NumPy, data cleaning, type conversion, validation  
+**SQL:** schema design, loading, joins, aggregations, data-quality checks  
+**Power BI:** KPI reporting and business dashboard development  
+**Analytics:** data grain, business-rule validation, trend analysis, reporting readiness  
+**Workflow:** reproducible project structure, documentation, Git/GitHub
+
+## Analyst Positioning
+
+This project is designed to demonstrate an important analyst capability: **knowing whether a metric is trustworthy before presenting it to a stakeholder**.
+
+Rather than positioning the work as a collection of charts, the repository emphasizes data quality, relational thinking, validation, and business-ready reporting.
+
+## Project Status
+
+**Portfolio-ready:** core Python preparation, MySQL schema/loading workflow, validation SQL, and Power BI report are included.
+
+Future enhancements can focus on dashboard screenshots and a concise business-insights section rather than adding more raw data or unnecessary technical files.
