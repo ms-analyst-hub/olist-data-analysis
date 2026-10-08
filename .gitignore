@@ -1,0 +1,27 @@
+# Local datasets
+data/raw/
+data/cleaned/
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Jupyter
+*.ipynb_checkpoints
+
+# Local environments
+.venv/
+venv/
+env/
+
+# Local secrets / configuration
+.env
+*.env
+config.local.*
+
+# Local database / OS files
+*.db
+*.sqlite
+.DS_Store
+Thumbs.db
